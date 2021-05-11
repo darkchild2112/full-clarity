@@ -1,5 +1,5 @@
 <template>
-  <h1>Full Clarity UI</h1>
+  <h1>Full Clarity UI v1.0</h1>
 </template>
 
 <script>
