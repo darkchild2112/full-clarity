@@ -1,13 +1,17 @@
 <template>
-  <h1>Full Clarity UI v1.0</h1>
+  <div>
+    <CreateGroup />
+  </div>
 </template>
 
 <script>
 
+import CreateGroup from './components/CreateGroup'
+
 export default {
   name: 'App',
   components: {
-
+    CreateGroup
   },
 };
 </script>

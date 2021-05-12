@@ -1,16 +1,18 @@
 <template>
   <div>
-    <h2>New Group</h2>
+    <UploadImage />
     <input type="text" placeholder="Enter group name" />
   </div>
 </template>
 
 <script>
 
+import UploadImage from './UploadImage'
+
 export default {
   name: 'GroupDetails',
   components: {
-
+    UploadImage
   },
 };
 </script>
