@@ -3,7 +3,9 @@
     <header>
         <button type="button">Close Modal</button>
         <h2>{{ heading }}</h2>
-        <button type="button" @click="next">{{ nextBtnText }}</button>
+        <button v-if="show('DETAILS')" type="button" @click="moveTo('MEMBERS')">Next</button>
+        <button v-if="show('MEMBERS')" type="button" @click="moveTo('CONFIRMATION')">Save</button>
+        <button v-if="show('CONFIRMATION')" type="button" >Done</button>
     </header>
     <GroupDetails v-if="show('DETAILS')" />
     <GroupMembers v-if="show('MEMBERS')" />
@@ -33,15 +35,14 @@ export default {
   data() {
       return {
           currentStep: steps.DETAILS,
-          currentStepIndex: 0
       }
   },
   methods: {
       show(step) {
           return this.currentStep === step;
       },
-      next() {
-          this.currentStepIndex++;
+      moveTo(step) {
+          this.currentStep = steps[step];
       }
   },
   computed: {
