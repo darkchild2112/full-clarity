@@ -3,13 +3,13 @@
     <header>
         <button type="button">Close Modal</button>
         <h2>{{ heading }}</h2>
-        <button v-if="show('DETAILS')" type="button" @click="moveTo('MEMBERS')">Next</button>
-        <button v-if="show('MEMBERS')" type="button" @click="moveTo('CONFIRMATION')">Save</button>
-        <button v-if="show('CONFIRMATION')" type="button" >Done</button>
+        <button v-if="show(steps.DETAILS)" type="button" @click="moveTo(steps.MEMBERS)">Next</button>
+        <button v-if="show(steps.MEMBERS)" type="button" @click="moveTo(steps.CONFIRMATION)">Save</button>
+        <button v-if="show(steps.CONFIRMATION)" type="button" >Done</button>
     </header>
-    <GroupDetails v-if="show('DETAILS')" />
-    <GroupMembers v-if="show('MEMBERS')" />
-    <GroupConfirmation v-if="show('CONFIRMATION')" />
+    <GroupDetails v-if="show(steps.DETAILS)" />
+    <GroupMembers v-if="show(steps.MEMBERS)" :contacts="contacts" />
+    <GroupConfirmation v-if="show(steps.CONFIRMATION)" />
   </div>
 </template>
 
@@ -19,11 +19,9 @@ import GroupDetails from './GroupDetails';
 import GroupMembers from './GroupMembers';
 import GroupConfirmation from './GroupConfirmation';
 
-const steps = { DETAILS: "DETAILS", MEMBERS: "MEMBERS", CONFIRMATION: "CONFIRMATION" };
+import { getContacts } from '../services/ContactsService';
 
 const headings = { DETAILS: "New group", MEMBERS: "Group members", CONFIRMATION: "Group created" };
-
-const nextBtn = { DETAILS: "Next", MEMBERS: "Save", CONFIRMATION: "Done" };
 
 export default {
   name: 'CreateGroup',
@@ -34,24 +32,29 @@ export default {
   },
   data() {
       return {
-          currentStep: steps.DETAILS,
+          currentStep: null,
+          steps: { DETAILS: "DETAILS", MEMBERS: "MEMBERS", CONFIRMATION: "CONFIRMATION" },
+          contacts: [],
       }
+  },
+  async created() {
+      this.currentStep = this.steps.DETAILS;
+
+      // TODO: Add try/catch
+      this.contacts = await getContacts();
   },
   methods: {
       show(step) {
           return this.currentStep === step;
       },
       moveTo(step) {
-          this.currentStep = steps[step];
+          this.currentStep = this.steps[step];
       }
   },
   computed: {
       heading() {
           return headings[this.currentStep];
       },
-      nextBtnText() {
-          return nextBtn[this.currentStep];
-      }
   }
 };
 </script>

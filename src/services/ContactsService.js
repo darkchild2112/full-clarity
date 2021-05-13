@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJlbmFiYm90dEBiZW4tYWJib3R0LmNvLnVrIiwiZXhwIjoxNjIxMzI5MTE3LCJpYXQiOjE2MjA3MjQzMTd9.3_voEKK518x9v9VJfRtbZwjs_TbsCdlSY2SNK7IlVEc';
 
 const baseUrl = 'https://europe-west2-coding-challenge-62755.cloudfunctions.net';
@@ -6,16 +8,18 @@ export async function getContacts() {
   
   const url = `${baseUrl}/getContacts`;
 
-  const response = await fetch(url, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  const response = await axios(url, {
+    method: 'GET',
+    cache: 'no-cache',
     headers: {
       'Authorization': authToken,
       'Content-Type': 'application/json'
     }
   });
+
+  console.log(response.data.contacts);
   
-  return response.json();
+  return response.data.contacts; 
 }
 
 export async function createContactGroup() {
