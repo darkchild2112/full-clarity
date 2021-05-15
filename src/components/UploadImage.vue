@@ -21,9 +21,10 @@ export default {
 
         var reader = new FileReader();
 
-        reader.onload = (event) => {
+        reader.addEventListener('load', (event) => {
             this.selectedImage = event.target.result;
-        };
+            this.$emit('image-selected', this.selectedImage);
+        },false);
             
         reader.readAsDataURL(event.target.files[0])
       }

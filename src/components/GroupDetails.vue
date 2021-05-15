@@ -1,7 +1,7 @@
 <template>
   <div>
-    <UploadImage />
-    <input type="text" placeholder="Enter group name" />
+    <UploadImage @imageSelected="$emit('image-selected', $event)" />
+    <input type="text" placeholder="Enter group name" @input="$emit('groupName', $event.target.value)" />
   </div>
 </template>
 

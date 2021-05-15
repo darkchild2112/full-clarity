@@ -17,7 +17,7 @@ export async function getContacts() {
     }
   });
   
-  const mappedData = response.data.contacts.map(c => ({
+  const mappedContacts = response.data.contacts.map(c => ({
     id: c.id,
     firstName: upperCaseFirstLetter(c.first_name),
     lastName: upperCaseFirstLetter(c.last_name),
@@ -26,19 +26,25 @@ export async function getContacts() {
     fullName: `${upperCaseFirstLetter(c.first_name)} ${upperCaseFirstLetter(c.last_name)}`,
   })); 
 
-  console.log(mappedData);
-
-  return mappedData;
+  return mappedContacts;
 }
 
 // TODO: extract to somewhere more reusuable
 const upperCaseFirstLetter = (value) => value.charAt(0).toUpperCase() + value.slice(1);
 
-export async function createContactGroup() {
+export async function createContactGroup(group) {
   
-  //const url = `${baseUrl}/createGroup`;
+  const url = `${baseUrl}/createGroup`;
 
-  return true;
+  await axios(url, {
+    method: 'POST',
+    cache: 'no-cache',
+    headers: {
+      'Authorization': authToken,
+      'Content-Type': 'application/json'
+    },
+    data: group
+  });
 }
 
 /*

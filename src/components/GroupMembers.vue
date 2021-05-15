@@ -16,6 +16,8 @@
 
 <script>
 
+const selectedContactsEventName = "selected-contact";
+
 export default {
   name: 'GroupMembers',
   components: {
@@ -35,12 +37,12 @@ export default {
     addContact(contact){
       this.selectedContacts = [contact, ...this.selectedContacts];
 
-      // TODO: Emit the currenct list
+      this.$emit(selectedContactsEventName, this.selectedContacts);
     },
     removeContact(contact){
       this.selectedContacts = this.selectedContacts.filter(c => c.id !== contact.id);
 
-      // TODO: Emit the currenct list
+      this.$emit(selectedContactsEventName, this.selectedContacts);
     },
     filterContacts(event){
 
@@ -57,6 +59,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+  img {
+    width: 50px;
+    height: auto;
+  }
 </style>
