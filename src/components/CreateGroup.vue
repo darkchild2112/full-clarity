@@ -30,13 +30,10 @@ export default {
       GroupMembers,
       GroupConfirmation
   },
-  data() {
-      return {
-          currentStep: null,
-          steps: { DETAILS: "DETAILS", MEMBERS: "MEMBERS", CONFIRMATION: "CONFIRMATION" },
-          contacts: [],
-      }
-  },
+  data: () => ({currentStep: null,
+    steps: { DETAILS: "DETAILS", MEMBERS: "MEMBERS", CONFIRMATION: "CONFIRMATION" },
+    contacts: []
+  }),
   async created() {
       this.currentStep = this.steps.DETAILS;
 

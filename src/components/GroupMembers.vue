@@ -1,12 +1,14 @@
 <template>
   <div>
-    <input type="text" placeholder="Search" />
+    <input type="text" placeholder="Search" @input="filterContacts($event)" />
     <ul>
-      <li v-for="contact in contacts" :key="contact.id">
-        <img :src="contact.avatar" :alt="`${getFullName(contact)}'s profile picture`" />
-        <h3>{{ getFullName(contact) }}</h3>
-        <button type="button" v-if="!contains(contact)" @click="addContact(contact)">Add {{ getFullName(contact) }}</button>
-        <button type="button" v-if="contains(contact)" @click="removeContact(contact)">Remove {{ getFullName(contact) }}</button>
+      <li v-for="contact in displayedContacts" :key="contact.id">
+        <img :src="contact.avatar" :alt="`${contact.fullName}'s profile picture`" />
+        <h3>{{ contact.fullName }}</h3>
+        <button type="button" v-if="!contains(contact)" 
+          @click="addContact(contact)">Add {{ contact.fullName }}</button>
+        <button type="button" v-if="contains(contact)" 
+          @click="removeContact(contact)">Remove {{ contact.fullName }}</button>
       </li>
     </ul>
   </div>
@@ -19,18 +21,17 @@ export default {
   components: {
 
   },
-  data(){
-    return {
-      selectedContacts: []
-    };
-  },
   props: {
     contacts: Array
   },
+  data: () => ({
+      selectedContacts: [],
+      displayedContacts: [],
+  }),
+  created(){
+      this.displayedContacts = this.contacts;
+  },
   methods: {
-    getFullName(contact) {
-      return `${contact.first_name} ${contact.last_name}`;
-    },
     addContact(contact){
       this.selectedContacts = [contact, ...this.selectedContacts];
 
@@ -40,6 +41,12 @@ export default {
       this.selectedContacts = this.selectedContacts.filter(c => c.id !== contact.id);
 
       // TODO: Emit the currenct list
+    },
+    filterContacts(event){
+
+      this.displayedContacts = event.target.value !== '' ? 
+        this.contacts.filter(c => c.searchableName.startsWith(event.target.value)) : 
+        this.contacts;
     },
     contains(contact) {
       const result = this.selectedContacts.filter(c => c.id === contact.id);

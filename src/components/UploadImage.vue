@@ -13,11 +13,9 @@ export default {
   components: {
 
   },
-  data() {
-    return { 
-        selectedImage: null 
-    }
-  },
+  data: () => ({
+      selectedImage: null 
+  }),
   methods: {
       uploadImage(event) {
 

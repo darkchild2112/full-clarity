@@ -16,11 +16,23 @@ export async function getContacts() {
       'Content-Type': 'application/json'
     }
   });
-
-  console.log(response.data.contacts);
   
-  return response.data.contacts; 
+  const mappedData = response.data.contacts.map(c => ({
+    id: c.id,
+    firstName: upperCaseFirstLetter(c.first_name),
+    lastName: upperCaseFirstLetter(c.last_name),
+    searchableName: `${c.first_name.toLowerCase()} ${c.last_name.toLowerCase()}`,
+    avatar: c.avatar,
+    fullName: `${upperCaseFirstLetter(c.first_name)} ${upperCaseFirstLetter(c.last_name)}`,
+  })); 
+
+  console.log(mappedData);
+
+  return mappedData;
 }
+
+// TODO: extract to somewhere more reusuable
+const upperCaseFirstLetter = (value) => value.charAt(0).toUpperCase() + value.slice(1);
 
 export async function createContactGroup() {
   
