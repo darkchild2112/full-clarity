@@ -1,21 +1,17 @@
 <template>
-  <div>
-    <header>
-        <button type="button">Close Modal</button>
-        <h2>{{ heading }}</h2>
-        <button v-if="show(steps.DETAILS)" type="button" 
-            @click="moveTo(steps.MEMBERS)" :disabled="!groupDetailsValid">Next</button>
-        <button v-if="show(steps.MEMBERS)" type="button" 
-            @click="moveTo(steps.CONFIRMATION)" :disabled="!groupMembersValid">Save</button>
-        <button v-if="show(steps.CONFIRMATION)" type="button" >Done</button>
-    </header>
+  <Modal :heading="heading">
+    <template v-slot:header>
+        <NavBtn v-if="show(steps.DETAILS)" @click="moveTo(steps.MEMBERS)" :disabled="!groupDetailsValid" text="Next" />
+        <NavBtn v-if="show(steps.MEMBERS)" @click="moveTo(steps.CONFIRMATION)" :disabled="!groupMembersValid" text="Save" />
+        <NavBtn v-if="show(steps.CONFIRMATION)" text="Done" />
+    </template>
     <GroupDetails v-if="show(steps.DETAILS)" 
         @groupName="groupName = $event" 
         @imageSelected="groupAvatar = $event"  />
     <GroupMembers v-if="show(steps.MEMBERS)" :contacts="contacts" 
         @selectedContact="updateSelectedContacts($event)" />
     <GroupConfirmation v-if="show(steps.CONFIRMATION)" />
-  </div>
+  </Modal>
 </template>
 
 <script>
@@ -23,6 +19,9 @@
 import GroupDetails from './GroupDetails';
 import GroupMembers from './GroupMembers';
 import GroupConfirmation from './GroupConfirmation';
+import NavBtn from './UI/NavigationButton';
+
+import Modal from './UI/Modal'
 
 import { getContacts, createContactGroup } from '../services/ContactsService';
 
@@ -33,7 +32,9 @@ export default {
   components: {
       GroupDetails,
       GroupMembers,
-      GroupConfirmation
+      GroupConfirmation,
+      Modal, 
+      NavBtn
   },
   data: () => ({currentStep: null,
     steps: { DETAILS: "DETAILS", MEMBERS: "MEMBERS", CONFIRMATION: "CONFIRMATION" },

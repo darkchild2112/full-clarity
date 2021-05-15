@@ -7,6 +7,10 @@
 <script>
 
 import CreateGroup from './components/CreateGroup'
+import './styles/main.css';
+import '../node_modules/normalize.css/normalize.css';
+
+
 
 export default {
   name: 'App',
