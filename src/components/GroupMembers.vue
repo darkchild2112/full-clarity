@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="search-container">
+      <img class="search-icon" :src="require('../assets/images/Search.png')" />
       <input type="text" placeholder="Search" @input="filterContacts($event)" />
+      <img class="close-icon" :src="require('../assets/images/close.png')" />
     </div>
     <ul class="contact-list">
       <li v-for="contact in displayedContacts" :key="contact.id">
@@ -66,12 +68,27 @@ export default {
 <style scoped>
 
   .search-container {
-    padding: 20px 20px;
+    padding: 20px 20px 20px 20px;
     display: flex;
+    position: relative;
+  }
+
+  .search-container img.search-icon {
+    position: absolute;
+    top: 38px;
+    left: 36px;
+  }
+
+  .search-container img.close-icon {
+    position: absolute;
+    top: 34px;
+    right: 32px;
   }
 
   .search-container input {
     width: 100%;
+    padding-left: 42px;
+    padding-right: 42px;
   }
 
   .contact-list {

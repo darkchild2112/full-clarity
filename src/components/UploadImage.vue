@@ -8,6 +8,7 @@
         @click="triggerUpload">
     </div>
     <div v-if="selectedImage" class="selected-image">
+      <img class="remove-icon" @click="removeImage" :src="require('../assets/images/removeIcon.png')" />
       <img :src="selectedImage" />
     </div>
     <p>Drag &amp; drop image or click to upload</p>
@@ -32,6 +33,10 @@ export default {
   methods: {
       triggerUpload() {
         this.$refs.uploadEl.click();
+      },
+      removeImage() {
+        this.selectedImage = null;
+        this.dragging = false;
       },
       uploadImage(event) {
 
@@ -71,6 +76,7 @@ export default {
       height: 144px;
       padding-top: 56px;
       margin: 0 auto;
+      position: relative;
     }
 
     .selected-image img {
@@ -81,9 +87,17 @@ export default {
         border-radius: 50%;
     }
 
-p{
-  padding: 0;
-}
+    .selected-image .remove-icon {
+      position: absolute;
+      top: 64px;
+      left: 107px;
+      width: 19px;
+      height: 18px;
+    }
+
+    p {
+      padding: 0;
+    }
 
   /*************************/
 
