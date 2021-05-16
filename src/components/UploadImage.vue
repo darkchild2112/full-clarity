@@ -43,6 +43,7 @@ export default {
       },
       uploadImage(event) {
 
+        // TODO: refactor as it's very similar to 'addFile'
         var reader = new FileReader();
 
         reader.addEventListener('load', (event) => {
@@ -113,10 +114,10 @@ export default {
     background-image: url('../assets/images/dragImage.png');
     background-repeat: no-repeat;
     background-position: center bottom;
+  }
 
-    .isDragging {
+  .isDragging {
       background-image: url('../assets/images/dragOverImage.png');
-    }
   }
 
 </style>
