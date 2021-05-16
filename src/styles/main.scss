@@ -11,7 +11,14 @@ input {
     padding-left: 20px;
     color: #405069;
     font-size: 0.875rem;
-  }
+}
+
+input[type=text] {   
+    /* Remove Iphone Shadow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
 
 .sr-only {
     display: none;
