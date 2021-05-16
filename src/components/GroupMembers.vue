@@ -2,8 +2,8 @@
   <div>
     <div class="search-container">
       <img class="search-icon" :src="require('../assets/images/Search.png')" />
-      <input type="text" placeholder="Search" @input="filterContacts($event)" />
-      <img class="close-icon" :src="require('../assets/images/close.png')" />
+      <input :value="searchText" type="text" placeholder="Search" @input="filterContacts($event)" />
+      <img class="close-icon" @click="clearSearchText" :src="require('../assets/images/close.png')" />
     </div>
     <ul class="contact-list">
       <li v-for="contact in displayedContacts" :key="contact.id">
@@ -33,13 +33,18 @@ export default {
     contacts: Array
   },
   data: () => ({
-      selectedContacts: [],
-      displayedContacts: [],
+    searchText: '',
+    selectedContacts: [],
+    displayedContacts: [],
   }),
   created(){
       this.displayedContacts = this.contacts;
   },
   methods: {
+    clearSearchText() {
+      this.searchText = '';
+      this.displayedContacts = this.contacts;
+    },
     addContact(contact){
       this.selectedContacts = [contact, ...this.selectedContacts];
 
@@ -52,6 +57,7 @@ export default {
     },
     filterContacts(event){
 
+      this.searchText = event.target.value;
       this.displayedContacts = event.target.value !== '' ? 
         this.contacts.filter(c => c.searchableName.startsWith(event.target.value)) : 
         this.contacts;
