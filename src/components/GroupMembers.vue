@@ -136,6 +136,7 @@ export default {
     
     background-repeat: no-repeat;
     background-position: 0 0;
+    background-color: #F3F5FB;
   }
 
   .contact-list button.btn-add {
