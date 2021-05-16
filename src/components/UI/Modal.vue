@@ -2,7 +2,10 @@
   <div class="modal-container">
     <div class="modal-content">
         <header class="modal-header">
-            <button type="button" class="btn-close">
+            <button v-if="!showBackButton" type="button" class="btn-close">
+                <span class="sr-only">Close Modal</span>
+            </button>
+            <button v-if="showBackButton" type="button" class="btn-back" @click="$emit('back-button-clicked')">
                 <span class="sr-only">Close Modal</span>
             </button>
             <h2>{{ heading }}</h2>
@@ -21,7 +24,8 @@ export default {
 
   },
   props: {
-      heading: String
+      heading: String,
+      showBackButton: Boolean
   },
   data: () => ({
 
@@ -58,6 +62,17 @@ export default {
         height: 26px;
         border: none;
         margin: 10px 10px;
+    }
+
+    .modal-header .btn-back {
+        background-image: url('../../assets/images/Back.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        width: 24px;
+        height: 26px;
+        border: none;
+        margin: 12px 10px;
+        background-color: transparent;
     }
 
     .modal-header h2 {

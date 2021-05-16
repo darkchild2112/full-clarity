@@ -1,11 +1,11 @@
 <template>
-  <Modal :heading="heading">
+  <Modal :heading="heading" :showBackButton="show(steps.MEMBERS)" @backButtonClicked="moveTo(steps.DETAILS)">
     <template v-slot:header>
         <NavBtn v-if="show(steps.DETAILS)" @click="moveTo(steps.MEMBERS)" :disabled="!groupDetailsValid" text="Next" />
         <NavBtn v-if="show(steps.MEMBERS)" @click="moveTo(steps.CONFIRMATION)" :disabled="!groupMembersValid" text="Save" />
-        <NavBtn v-if="show(steps.CONFIRMATION)" text="Done" />
+        <NavBtn v-if="show(steps.CONFIRMATION)" @click="finish()" text="Done" />
     </template>
-    <GroupDetails v-if="show(steps.DETAILS)" 
+    <GroupDetails v-if="show(steps.DETAILS)" :groupName="groupName" :selectedImage="groupAvatar"
         @groupName="groupName = $event" 
         @imageSelected="groupAvatar = $event"  />
     <GroupMembers v-if="show(steps.MEMBERS)" :contacts="contacts" 
@@ -76,6 +76,13 @@ export default {
       },
       updateSelectedContacts(contacts){
           this.selectedContacts = contacts;
+      },
+      finish(){
+        this.groupName = '';
+        this.groupAvatar = null;
+        this.selectedContacts = [];
+
+        this.currentStep = this.steps.DETAILS;
       }
   },
   computed: {

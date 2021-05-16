@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div v-if="!selectedImage" class="drop-container" :class="{ 'isDragging': dragging}" v-cloak 
+    <div v-if="!avatar" class="drop-container" :class="{ 'isDragging': dragging}" v-cloak 
         @drop.prevent="addFile" 
         @dragleave.prevent="dragEnd" 
         @dragover.prevent
         @dragenter.prevent="dragOver"
         @click="triggerUpload">
     </div>
-    <div v-if="selectedImage" class="selected-image">
+    <div v-if="avatar" class="selected-image">
       <img class="remove-icon" @click="removeImage" :src="require('../assets/images/removeIcon.png')" />
-      <img :src="selectedImage" />
+      <img :src="avatar" />
     </div>
     <p>Drag &amp; drop image or click to upload</p>
     <div class="sr-only">
@@ -26,16 +26,22 @@ export default {
   components: {
 
   },
+  props: {
+    selectedImage: String
+  },
   data: () => ({
-      selectedImage: null,
+      avatar: null,
       dragging: false,
   }),
+  created(){
+    this.avatar = this.selectedImage;
+  },
   methods: {
       triggerUpload() {
         this.$refs.uploadEl.click();
       },
       removeImage() {
-        this.selectedImage = null;
+        this.avatar = null;
         this.dragging = false;
       },
       uploadImage(event) {
@@ -43,8 +49,8 @@ export default {
         var reader = new FileReader();
 
         reader.addEventListener('load', (event) => {
-            this.selectedImage = event.target.result;
-            this.$emit('image-selected', this.selectedImage);
+            this.avatar = event.target.result;
+            this.$emit('image-selected', this.avatar);
         },false);
             
         reader.readAsDataURL(event.target.files[0])
@@ -54,8 +60,8 @@ export default {
         var reader = new FileReader();
 
         reader.addEventListener('load', (event) => {
-            this.selectedImage = event.target.result;
-            this.$emit('image-selected', this.selectedImage);
+            this.avatar = event.target.result;
+            this.$emit('image-selected', this.avatar);
         },false);
 
         reader.readAsDataURL(event.dataTransfer.files[0])

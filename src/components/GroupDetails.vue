@@ -1,7 +1,7 @@
 <template>
   <div>
-    <UploadImage @imageSelected="$emit('image-selected', $event)" />
-    <input type="text" placeholder="Enter group name" @input="$emit('groupName', $event.target.value)" />
+    <UploadImage :selectedImage="selectedImage" @imageSelected="$emit('image-selected', $event)" />
+    <input :value="groupName" type="text" placeholder="Enter group name" @input="$emit('groupName', $event.target.value)" />
   </div>
 </template>
 
@@ -14,6 +14,10 @@ export default {
   components: {
     UploadImage
   },
+  props: {
+    groupName: String,
+    selectedImage: Object
+  }
 };
 </script>
 
