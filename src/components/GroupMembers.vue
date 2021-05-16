@@ -59,7 +59,7 @@ export default {
 
       this.searchText = event.target.value;
       this.displayedContacts = event.target.value !== '' ? 
-        this.contacts.filter(c => c.searchableName.startsWith(event.target.value)) : 
+        this.contacts.filter(c => c.searchableName.startsWith(event.target.value.toLowerCase())) : 
         this.contacts;
     },
     contains(contact) {
