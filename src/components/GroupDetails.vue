@@ -17,6 +17,10 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+  input {
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
 </style>

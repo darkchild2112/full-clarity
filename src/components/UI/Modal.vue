@@ -54,7 +54,6 @@ export default {
         background-image: url('../../assets/images/close.png');
         background-repeat: no-repeat;
         background-position: 0 0;
-        color: red;
         width: 24px;
         height: 26px;
         border: none;
@@ -69,9 +68,11 @@ export default {
         background-color: #F6F8FD;
         margin: 15% auto; 
         width: 500px; 
-        height: 474px;
+        min-height: 474px;
         border-radius: 5px;
     }
+
+
 
     /* Mobile width needs to be percentage */
 </style>

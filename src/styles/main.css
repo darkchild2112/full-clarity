@@ -4,6 +4,15 @@ body {
     font-family: 'nunito';
 }
 
+input {
+    border-radius: 25px;
+    height: 50px;
+    border: 1px solid #d5deed;
+    padding-left: 20px;
+    color: #405069;
+    font-size: 0.875rem;
+  }
+
 .sr-only {
     display: none;
 }

@@ -1,14 +1,18 @@
 <template>
   <div>
-    <input type="text" placeholder="Search" @input="filterContacts($event)" />
-    <ul>
+    <div class="search-container">
+      <input type="text" placeholder="Search" @input="filterContacts($event)" />
+    </div>
+    <ul class="contact-list">
       <li v-for="contact in displayedContacts" :key="contact.id">
         <img :src="contact.avatar" :alt="`${contact.fullName}'s profile picture`" />
         <h3>{{ contact.fullName }}</h3>
-        <button type="button" v-if="!contains(contact)" 
-          @click="addContact(contact)">Add {{ contact.fullName }}</button>
-        <button type="button" v-if="contains(contact)" 
-          @click="removeContact(contact)">Remove {{ contact.fullName }}</button>
+        <button type="button" v-if="!contains(contact)" class="btn-add"
+          @click="addContact(contact)"><span class="sr-only">Add {{ contact.fullName }}</span></button>
+        <button type="button" v-if="contains(contact)" class="btn-remove"
+          @click="removeContact(contact)">
+            <span class="sr-only">Remove {{ contact.fullName }}</span>
+        </button>
       </li>
     </ul>
   </div>
@@ -60,8 +64,63 @@ export default {
 </script>
 
 <style scoped>
-  img {
-    width: 50px;
-    height: auto;
+
+  .search-container {
+    padding: 20px 20px;
+    display: flex;
   }
+
+  .search-container input {
+    width: 100%;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 15px 20px;
+    margin: 0;
+    background-color: #F3F5FB;
+  }
+
+  .contact-list li {
+    display: flex;
+    align-items:center;
+    padding: 0 0 20px 0;
+  }
+
+  .contact-list li:last-child {
+    padding-bottom: 0;
+  }
+
+  .contact-list img {
+    width: 48px;
+    border-radius: 50%; /* perfect circle */
+    height: 48px; /* some images arn't scaling correctly without this */
+  }
+
+  .contact-list h3 {
+    margin: 0;
+    color: #405069;
+    font-size: 0.875rem; /* 14px */
+    margin-left: 20px;
+  }
+
+  .contact-list button {
+    margin-left: auto; /* pushes it over to the right */
+
+    width: 25px;
+    height: 25px;
+    border: none;
+    
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+
+  .contact-list button.btn-add {
+    background-image: url('../assets/images/add.png');
+  }
+
+  .contact-list button.btn-remove {
+    background-image: url('../assets/images/remove.png');
+  }
+
 </style>
