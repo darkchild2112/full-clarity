@@ -4,7 +4,8 @@
         @drop.prevent="addFile" 
         @dragleave.prevent="dragEnd" 
         @dragover.prevent
-        @dragenter.prevent="dragOver">
+        @dragenter.prevent="dragOver"
+        @click="triggerUpload">
     </div>
     <div v-if="selectedImage" class="selected-image">
       <img :src="selectedImage" />
@@ -12,7 +13,7 @@
     <p>Drag &amp; drop image or click to upload</p>
     <div class="sr-only">
       <label for="imgUpload">Image upload:</label>
-      <input id="imgUpload" type="file" accept="image/*" @change="uploadImage($event)">
+      <input id="imgUpload" ref="uploadEl" type="file" accept="image/*" @change="uploadImage($event)">
     </div>
   </div>
 </template>
@@ -29,6 +30,9 @@ export default {
       dragging: false,
   }),
   methods: {
+      triggerUpload() {
+        this.$refs.uploadEl.click();
+      },
       uploadImage(event) {
 
         var reader = new FileReader();
