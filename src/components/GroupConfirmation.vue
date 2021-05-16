@@ -6,38 +6,29 @@
 </template>
 
 <script>
-
-
-
 export default {
   name: 'GroupConfirmation',
-  components: {
-
-  },
   data: () => ({
     imgPath: require('../assets/images/Confirmation.png')
   })
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 
   .confirmation-container {
-    padding: 100px;
-  }
+    padding-top: 100px;
 
-  .confirmation-container > * {
+    > * {
       margin: 0 auto;
       display: block;
-  }
+    }
 
-  img {
-
+    p {
+      text-align: center;
+      padding-top: 20px;
+      color: #96A6BE;
+    }
   }
-
-  p {
-    text-align: center;
-    padding-top: 20px;
-    color: #96A6BE;
-  }
+  
 </style>

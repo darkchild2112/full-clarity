@@ -71,30 +71,30 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
   .search-container {
     padding: 20px 20px 20px 20px;
     display: flex;
     position: relative;
-  }
 
-  .search-container img.search-icon {
-    position: absolute;
-    top: 38px;
-    left: 36px;
-  }
+    img.search-icon {
+      position: absolute;
+      top: 38px;
+      left: 36px;
+    }
 
-  .search-container img.close-icon {
-    position: absolute;
-    top: 34px;
-    right: 32px;
-  }
+    img.close-icon {
+      position: absolute;
+      top: 34px;
+      right: 32px;
+    }
 
-  .search-container input {
-    width: 100%;
-    padding-left: 42px;
-    padding-right: 42px;
+    input {
+      width: 100%;
+      padding-left: 42px;
+      padding-right: 42px;
+    }
   }
 
   .contact-list {
@@ -102,49 +102,49 @@ export default {
     padding: 15px 20px;
     margin: 0;
     background-color: #F3F5FB;
-  }
 
-  .contact-list li {
-    display: flex;
-    align-items:center;
-    padding: 0 0 20px 0;
-  }
+    li {
+      display: flex;
+      align-items:center;
+      padding: 0 0 20px 0;
+    }
 
-  .contact-list li:last-child {
-    padding-bottom: 0;
-  }
+    li:last-child {
+      padding-bottom: 0;
+    }
 
-  .contact-list img {
-    width: 48px;
-    border-radius: 50%; /* perfect circle */
-    height: 48px; /* some images arn't scaling correctly without this */
-  }
+    img {
+      width: 48px;
+      border-radius: 50%; /* perfect circle */
+      height: 48px; /* some images arn't scaling correctly without this */
+    }
 
-  .contact-list h3 {
-    margin: 0;
-    color: #405069;
-    font-size: 0.875rem; /* 14px */
-    margin-left: 20px;
-  }
+    h3 {
+      margin: 0;
+      color: #405069;
+      font-size: 0.875rem; /* 14px */
+      margin-left: 20px;
+    }
 
-  .contact-list button {
-    margin-left: auto; /* pushes it over to the right */
+    button {
+      margin-left: auto; /* pushes it over to the right */
 
-    width: 25px;
-    height: 25px;
-    border: none;
-    
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-color: #F3F5FB;
-  }
+      width: 25px;
+      height: 25px;
+      border: none;
+      
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-color: #F3F5FB;
+    }
 
-  .contact-list button.btn-add {
-    background-image: url('../assets/images/add.png');
-  }
+    button.btn-add {
+      background-image: url('../assets/images/add.png');
+    }
 
-  .contact-list button.btn-remove {
-    background-image: url('../assets/images/remove.png');
+    button.btn-remove {
+      background-image: url('../assets/images/remove.png');
+    }
   }
 
 </style>

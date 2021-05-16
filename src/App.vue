@@ -7,7 +7,7 @@
 <script>
 
 import CreateGroup from './components/CreateGroup'
-import './styles/main.css';
+import './styles/main.scss';
 import '../node_modules/normalize.css/normalize.css';
 
 

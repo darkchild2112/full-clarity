@@ -17,23 +17,18 @@
 </template>
 
 <script>
-
 export default {
   name: 'Modal',
-  components: {
-
-  },
   props: {
       heading: String,
       showBackButton: Boolean
   },
-  data: () => ({
-
-  }),
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+    @import '../../styles/_variables.scss';
 
     .modal-container {
         position: fixed; 
@@ -44,50 +39,51 @@ export default {
         height: 100%; 
         overflow: auto;
         background-color: rgba(64, 80, 105,0.4);
+
+        .modal-content {
+            background-color: #F6F8FD;
+            margin: 15% auto; 
+            width: 500px; 
+            min-height: 474px;
+            border-radius: 5px;
+
+            @media only screen and (max-width: $X-Small) {
+
+                width: 95%;
+            }
+
+            .modal-header {
+                background-color: #fff;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                border-radius: 5px 5px 0 0;
+
+                .btn-close {
+                    background-image: url('../../assets/images/close.png');
+                    background-repeat: no-repeat;
+                    background-position: 0 0;
+                    width: 24px;
+                    height: 26px;
+                    border: none;
+                    margin: 10px 10px;
+                }
+
+                .btn-back {
+                    background-image: url('../../assets/images/Back.png');
+                    background-repeat: no-repeat;
+                    background-position: 0 0;
+                    width: 24px;
+                    height: 26px;
+                    border: none;
+                    margin: 12px 10px;
+                    background-color: transparent;
+                }
+
+                h2 {
+                    font-size: 1.13rem;
+                }
+            }
+        }
     }
-
-    .modal-header {
-        background-color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        border-radius: 5px 5px 0 0;
-    }
-
-    .modal-header .btn-close {
-        background-image: url('../../assets/images/close.png');
-        background-repeat: no-repeat;
-        background-position: 0 0;
-        width: 24px;
-        height: 26px;
-        border: none;
-        margin: 10px 10px;
-    }
-
-    .modal-header .btn-back {
-        background-image: url('../../assets/images/Back.png');
-        background-repeat: no-repeat;
-        background-position: 0 0;
-        width: 24px;
-        height: 26px;
-        border: none;
-        margin: 12px 10px;
-        background-color: transparent;
-    }
-
-    .modal-header h2 {
-        font-size: 1.13rem;
-    }
-
-    .modal-content {
-        background-color: #F6F8FD;
-        margin: 15% auto; 
-        width: 500px; 
-        min-height: 474px;
-        border-radius: 5px;
-    }
-
-
-
-    /* Mobile width needs to be percentage */
 </style>

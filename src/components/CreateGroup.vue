@@ -90,6 +90,8 @@ export default {
           return headings[this.currentStep];
       },
       groupDetailsValid(){ 
+
+          console.log({name: this.groupName, avatar: this.groupAvatar });
           return this.groupName !== '' && this.groupAvatar !== null;
       },
       groupMembersValid(){
@@ -98,7 +100,3 @@ export default {
   }
 };
 </script>
-
-<style>
-
-</style>

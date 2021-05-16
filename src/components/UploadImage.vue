@@ -23,9 +23,6 @@
 
 export default {
   name: 'UploadImage',
-  components: {
-
-  },
   props: {
     selectedImage: String
   },
@@ -76,49 +73,50 @@ export default {
 };
 </script>
 
-<style scoped>
-    .selected-image {
+<style lang="scss" scoped>
+  .selected-image {
+    width: 144px;
+    height: 144px;
+    padding-top: 56px;
+    margin: 0 auto;
+    position: relative;
+
+    img {
       width: 144px;
       height: 144px;
-      padding-top: 56px;
       margin: 0 auto;
-      position: relative;
+      display: block;
+      border-radius: 50%;
     }
 
-    .selected-image img {
-        width: 144px;
-        height: 144px;
-        margin: 0 auto;
-        display: block;
-        border-radius: 50%;
-    }
-
-    .selected-image .remove-icon {
+    .remove-icon {
       position: absolute;
       top: 64px;
       left: 107px;
       width: 19px;
       height: 18px;
     }
+  }
 
-    p {
-      padding: 0;
-    }
-
-  /*************************/
+  p {
+    padding: 0;
+    text-align: center;
+    padding-top: 20px;
+    color: #96A6BE;
+  }
 
   .drop-container {
-    width: 400px;
+    width: 100%;
     height: 200px;
     margin: 0 auto;
 
     background-image: url('../assets/images/dragImage.png');
     background-repeat: no-repeat;
     background-position: center bottom;
-  }
 
-  .drop-container.isDragging {
-    background-image: url('../assets/images/dragOverImage.png');
+    .isDragging {
+      background-image: url('../assets/images/dragOverImage.png');
+    }
   }
 
 </style>

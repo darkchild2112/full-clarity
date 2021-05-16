@@ -21,10 +21,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+  @import '../styles/_variables.scss';
+  
   input {
     width: 400px;
     margin: 0 auto;
     display: block;
+
+    @media only screen and (max-width: $X-Small) {
+
+        width: 85%;
+    }
   }
 </style>

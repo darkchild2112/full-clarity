@@ -12,7 +12,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     
     button {
         background-color: #EFFAFF;
@@ -21,9 +21,12 @@ export default {
         width: 60px;
         height: 34px;
         margin: 8px 8px 0 0;
+
+
     }
 
     button:disabled {
-        opacity: 0.5;
+      opacity: 0.5;
     }
+    
 </style>
